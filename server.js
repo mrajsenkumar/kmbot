@@ -4,8 +4,8 @@ var fs = require('fs');
 var https = require('https');
 var resemble = require('node-resemble-js');
 var tmp = require('tmp');
-var cognitiveservices = require('botbuilder-cognitiveservices');
-var qa = require('qa');
+//var cognitiveservices = require('botbuilder-cognitiveservices');
+//var qa = require('qa');
 
 
 var connector = new builder.ChatConnector({
@@ -36,7 +36,7 @@ bot.dialog('/', [
     function (session, results) {
          if (results.response.entity === 'FAQ') {
 	      //var fit= new qa.q(session)
-		  session.replaceDialog('/FA');
+		  session.beginDialog('/Help');
 	     //session.beginDialog('/',BasicQnAMakerDialog);
         } else if (results.response.entity === 'Help') {
 			session.beginDialog('/Help');
@@ -65,9 +65,7 @@ bot.dialog('/Help', [function (session) {
         if (results.response.entity === 'Sketch of the doc') {
             session.replaceDialog('/Vessel');
         } else if (results.response.entity === 'Detailed Description') {
-			//session.replaceDialog('/', BasicQnAMakerDialog);
-			//session.replaceDialog('/FA');
-			//bot.dialog('/', BasicQnAMakerDialog);
+			
             session.replaceDialog('/Exchanger');
         } else {
             session.send('Invalid choice.');
@@ -77,6 +75,7 @@ bot.dialog('/Help', [function (session) {
         }
     }
 ]);
+/*
 var recognizer = new cognitiveservices.QnAMakerRecognizer({
 	knowledgeBaseId: '9c0ef106-fe80-4bc2-bfba-0f3552d2d7dd', 
 	subscriptionKey: ' 9918e6b35ba340c69d1333920ad4de30'});
@@ -95,7 +94,7 @@ bot.dialog('/FA',  [
        
 
 ]);
-
+*/
 bot.dialog('/IdentifyProduct', [
  
     function (session, results, next) {
