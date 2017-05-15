@@ -149,7 +149,7 @@ bot.dialog('/Exchanger', [
                 .title(p.name)
                 .images([
                     builder.CardImage.create(session, p.image)
-                    .tap(builder.CardAction.imBack(session, p.name))
+                    .tap(builder.CardAction.showImage(session, p.image)),
                 ])
                 .buttons([builder.CardAction.imBack(session, p.name, "Select")]);
         });
